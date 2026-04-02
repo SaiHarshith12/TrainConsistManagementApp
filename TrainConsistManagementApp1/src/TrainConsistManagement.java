@@ -1,36 +1,27 @@
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 public class TrainConsistManagement {
     public static void main(String[] args) {
-        System.out.println("=== UC2: Add Passenger Bogies to Train ===\n");
+        System.out.println("=== UC3: Track Unique Bogie IDs ===\n");
 
-        // Create an ArrayList for passenger bogies
-        List<String> passengerBogies = new ArrayList<>();
+        // Create a HashSet for bogie IDs
+        Set<String> bogieIDs = new HashSet<>();
 
-        // Add bogies
-        passengerBogies.add("Sleeper");
-        passengerBogies.add("AC Chair");
-        passengerBogies.add("First Class");
+        // Add bogie IDs (including duplicates intentionally)
+        bogieIDs.add("B6101");
+        bogieIDs.add("B6102");
+        bogieIDs.add("BG103");
+        bogieIDs.add("BG104");
+        bogieIDs.add("B6101"); // duplicate
+        bogieIDs.add("BG104"); // duplicate
 
-        // Print the list after insertion
-        System.out.println("After Adding Bogies:");
-        System.out.println("Passenger Bogies: " + passengerBogies);
+        // Print the final set
+        System.out.println("Bogie IDs After Insertion:");
+        System.out.println(bogieIDs);
 
-        // Remove one bogie (AC Chair)
-        passengerBogies.remove("AC Chair");
-        System.out.println("\nAfter Removing 'AC Chair':");
-        System.out.println("Passenger Bogies: " + passengerBogies);
-
-        // Check if 'Sleeper' exists
-        boolean hasSleeper = passengerBogies.contains("Sleeper");
-        System.out.println("\nChecking if 'Sleeper' exists:");
-        System.out.println("Contains Sleeper?: " + hasSleeper);
-
-        // Print final list state
-        System.out.println("\nFinal Train Passenger Consist:");
-        System.out.println(passengerBogies);
-
-        System.out.println("\nUC2 operations completed successfully...");
+        System.out.println("\nNote:");
+        System.out.println("Duplicates are automatically ignored by HashSet.");
+        System.out.println("UC3 uniqueness validation completed...");
     }
 }
