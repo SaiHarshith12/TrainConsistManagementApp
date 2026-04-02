@@ -2,28 +2,35 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class TrainConsistManagement {
-
     public static void main(String[] args) {
-        // Welcome message
-        System.out.println("=== Train Consist Management App ===\n");
+        System.out.println("=== UC2: Add Passenger Bogies to Train ===\n");
 
-        // Initialize an empty list for train bogies
-        List<String> trainConsist = new ArrayList<>();
+        // Create an ArrayList for passenger bogies
+        List<String> passengerBogies = new ArrayList<>();
 
-        // Display initial bogie count
-        System.out.println("Initial bogie count: " + trainConsist.size());
+        // Add bogies
+        passengerBogies.add("Sleeper");
+        passengerBogies.add("AC Chair");
+        passengerBogies.add("First Class");
 
-        // Display current train consist
-        System.out.println("\nCurrent Train Consist:");
-        if (trainConsist.isEmpty()) {
-            System.out.println("No bogies attached yet.");
-        } else {
-            for (String bogie : trainConsist) {
-                System.out.println("- " + bogie);
-            }
-        }
+        // Print the list after insertion
+        System.out.println("After Adding Bogies:");
+        System.out.println("Passenger Bogies: " + passengerBogies);
 
-        // Indicate system readiness
-        System.out.println("\nSystem ready for operations.\n");
+        // Remove one bogie (AC Chair)
+        passengerBogies.remove("AC Chair");
+        System.out.println("\nAfter Removing 'AC Chair':");
+        System.out.println("Passenger Bogies: " + passengerBogies);
+
+        // Check if 'Sleeper' exists
+        boolean hasSleeper = passengerBogies.contains("Sleeper");
+        System.out.println("\nChecking if 'Sleeper' exists:");
+        System.out.println("Contains Sleeper?: " + hasSleeper);
+
+        // Print final list state
+        System.out.println("\nFinal Train Passenger Consist:");
+        System.out.println(passengerBogies);
+
+        System.out.println("\nUC2 operations completed successfully...");
     }
 }
