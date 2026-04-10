@@ -1,42 +1,55 @@
-import java.util.Scanner;
+import java.util.Arrays;
 
 public class TrainConsistManagement {
 
     public static void main(String[] args) {
 
+        System.out.println("===========");
+        System.out.println(" UC19 Binary Search for Bogie ID ");
+        System.out.println("===========\n");
+
         // ✅ Create array of bogie IDs
         String[] bogieIds = {"B6101", "B6205", "B6309", "B6412", "B0550"};
 
-        // ✅ Accept input
-        Scanner scanner = new Scanner(System.in);
-        System.out.print("Enter Bogie ID to search: ");
-        String searchId = scanner.nextLine();
+        // ✅ Sort array (precondition for binary search)
+        Arrays.sort(bogieIds);
 
-        // ✅ Display all bogies
-        System.out.println("\nAvailable Bogie IDs:");
+        // ✅ Search key
+        String key = "B6309";
+
+        // ✅ Display sorted bogies
+        System.out.println("Sorted Bogie IDs:");
         for (String id : bogieIds) {
             System.out.print(id + " ");
         }
+        System.out.println("\n");
 
-        // ✅ LINEAR SEARCH
+        // ✅ Binary Search Logic
+        int low = 0;
+        int high = bogieIds.length - 1;
         boolean found = false;
 
-        for (String id : bogieIds) {
-            if (id.equals(searchId)) {   // ✔ comparison using equals()
+        while (low <= high) {
+
+            int mid = (low + high) / 2;
+
+            int result = key.compareTo(bogieIds[mid]);
+
+            if (result == 0) {
                 found = true;
-                break;                  // ✔ stop when found
+                break;
+            } else if (result < 0) {
+                high = mid - 1;   // search left
+            } else {
+                low = mid + 1;    // search right
             }
         }
 
         // ✅ Display result
-        System.out.println("\n");
-
         if (found) {
-            System.out.println("Bogie ID " + searchId + " found in the list.");
+            System.out.println("Bogie ID " + key + " found.");
         } else {
-            System.out.println("Bogie ID " + searchId + " NOT found.");
+            System.out.println("Bogie ID " + key + " NOT found.");
         }
-
-        scanner.close();
     }
 }
