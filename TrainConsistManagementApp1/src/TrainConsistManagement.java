@@ -1,29 +1,42 @@
-import java.util.Arrays;
+import java.util.Scanner;
 
 public class TrainConsistManagement {
 
     public static void main(String[] args) {
 
-        System.out.println("=================================");
-        System.out.println(" UC17 Sort Bogie Names Using Arrays.sort() ");
-        System.out.println("=================================\n");
+        // ✅ Create array of bogie IDs
+        String[] bogieIds = {"B6101", "B6205", "B6309", "B6412", "B0550"};
 
-        // ✅ Create array of bogie names
-        String[] bogieNames = {
-                "Sleeper", "AC Chair", "First Class", "General", "Luxury"
-        };
+        // ✅ Accept input
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Enter Bogie ID to search: ");
+        String searchId = scanner.nextLine();
 
-        // ✅ Display original array
-        System.out.println("Original Bogie Names:");
-        System.out.println(Arrays.toString(bogieNames));
+        // ✅ Display all bogies
+        System.out.println("\nAvailable Bogie IDs:");
+        for (String id : bogieIds) {
+            System.out.print(id + " ");
+        }
 
-        // ✅ Sort alphabetically
-        Arrays.sort(bogieNames);
+        // ✅ LINEAR SEARCH
+        boolean found = false;
 
-        // ✅ Display sorted array
-        System.out.println("\nSorted Bogie Names (Alphabetical):");
-        System.out.println(Arrays.toString(bogieNames));
+        for (String id : bogieIds) {
+            if (id.equals(searchId)) {   // ✔ comparison using equals()
+                found = true;
+                break;                  // ✔ stop when found
+            }
+        }
 
-        System.out.println("\nUC17 sorting completed...");
+        // ✅ Display result
+        System.out.println("\n");
+
+        if (found) {
+            System.out.println("Bogie ID " + searchId + " found in the list.");
+        } else {
+            System.out.println("Bogie ID " + searchId + " NOT found.");
+        }
+
+        scanner.close();
     }
 }
