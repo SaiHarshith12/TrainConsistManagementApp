@@ -1,45 +1,45 @@
-import java.util.*;
+import java.util.Scanner;
+import java.util.regex.Pattern;
+import java.util.regex.Matcher;
 
 public class TrainConsistManagement {
 
-    // Bogie class
-    static class Bogie {
-        String name;
-        int capacity;
-
-        Bogie(String name, int capacity) {
-            this.name = name;
-            this.capacity = capacity;
-        }
-
-        @Override
-        public String toString() {
-            return name + " -> " + capacity;
-        }
-    }
-
     public static void main(String[] args) {
 
-        // Create list of bogies
-        List<Bogie> bogies = new ArrayList<>();
+        Scanner scanner = new Scanner(System.in);
 
-        bogies.add(new Bogie("Sleeper", 72));
-        bogies.add(new Bogie("AC Chair", 56));
-        bogies.add(new Bogie("First Class", 24));
-        bogies.add(new Bogie("Sleeper", 70));
+        // Accept input
+        System.out.print("Enter Train ID (Format: TRN-1234): ");
+        String trainId = scanner.nextLine();
 
-        // Display bogies
-        System.out.println("Bogies in Train:");
-        for (Bogie b : bogies) {
-            System.out.println(b);
+        System.out.print("Enter Cargo Code (Format: PET-AB): ");
+        String cargoCode = scanner.nextLine();
+
+        // ✅ Define regex patterns
+        String trainRegex = "TRN-\\d{4}";
+        String cargoRegex = "PET-[A-Z]{2}";
+
+        // ✅ Compile patterns
+        Pattern trainPattern = Pattern.compile(trainRegex);
+        Pattern cargoPattern = Pattern.compile(cargoRegex);
+
+        // ✅ Create matcher objects
+        Matcher trainMatcher = trainPattern.matcher(trainId);
+        Matcher cargoMatcher = cargoPattern.matcher(cargoCode);
+
+        // ✅ Validate using matches()
+        if (trainMatcher.matches()) {
+            System.out.println("Train ID is valid ✅");
+        } else {
+            System.out.println("Invalid Train ID ❌");
         }
 
-        // ✅ Aggregate using map + reduce
-        int totalCapacity = bogies.stream()
-                .map(b -> b.capacity)     // extract capacity
-                .reduce(0, Integer::sum); // sum all
+        if (cargoMatcher.matches()) {
+            System.out.println("Cargo Code is valid ✅");
+        } else {
+            System.out.println("Invalid Cargo Code ❌");
+        }
 
-        // Display result
-        System.out.println("\nTotal Seating Capacity: " + totalCapacity);
+        scanner.close();
     }
 }
